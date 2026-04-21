@@ -50,6 +50,12 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 #root {
@@ -277,4 +283,115 @@ p {
   height: 6px;
   border-radius: 50%;
   background: var(--primary);
+}
+
+/* ---------- Responsive ---------- */
+/* Tablet */
+@media (max-width: 1024px) {
+  .gg-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .gg-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Collapse every inline multi-column grid to a single column on mobile */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tighten large inline gaps */
+  [style*="gap: '3rem'"],
+  [style*="gap: 3rem"],
+  [style*="gap: '2.5rem'"],
+  [style*="gap: 2.5rem"],
+  [style*="gap: '2rem'"],
+  [style*="gap: 2rem"] {
+    gap: 1.25rem !important;
+  }
+
+  /* Typography */
+  h1 {
+    font-size: clamp(1.85rem, 7vw, 2.3rem) !important;
+    line-height: 1.15 !important;
+  }
+  h2 {
+    font-size: clamp(1.35rem, 5.5vw, 1.7rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Navbar: hide center nav on mobile so header stays on one row */
+  header nav {
+    display: none !important;
+  }
+  header > div {
+    padding: 0.75rem 16px !important;
+  }
+  header .gg-btn {
+    padding: 0.55rem 0.95rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Buttons: let them wrap nicely */
+  .gg-btn {
+    padding: 0.75rem 1.1rem;
+    font-size: 0.92rem;
+  }
+
+  /* Cards / sections */
+  .gg-card {
+    border-radius: var(--radius-lg);
+  }
+
+  /* Reduce oversized section paddings (inline like '3.5rem 24px 2rem') */
+  section[class*="gg-container"] {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Inputs take the full row */
+  .gg-input,
+  .gg-textarea {
+    font-size: 16px; /* avoid iOS zoom-on-focus */
+  }
+
+  /* Floating hero badges can overflow small screens — constrain them */
+  .gg-container [style*="position: absolute"][style*="right: -"] {
+    right: 8px !important;
+  }
+  .gg-container [style*="position: absolute"][style*="bottom: -"] {
+    bottom: 8px !important;
+    left: 12px !important;
+  }
+
+  /* CTA gradient block: tighter padding */
+  [style*="linear-gradient(135deg, #ff8a4d"] {
+    padding: 2rem 1.25rem !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 420px) {
+  .gg-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  .gg-btn {
+    padding: 0.7rem 0.95rem;
+    font-size: 0.88rem;
+  }
+  .gg-chip {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.82rem;
+  }
 }
