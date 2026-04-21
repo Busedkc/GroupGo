@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import AIResponse from '../components/AIResponse'
 
-const API = 'http://localhost:8000'
+const API = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
 const AVATAR_COLORS = ['#ff6b3d', '#2fb8a3', '#f5b769', '#5a8f6a', '#9b6bff', '#f87171', '#3b82f6']
 
