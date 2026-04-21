@@ -56,7 +56,20 @@ export default function CreateTrip() {
       setSurveyToken(token)
       setTripId(id)
     } catch (e) {
-      alert('Bir şeyler ters gitti!')
+      console.error('Trip create error:', e)
+      let detail = 'Bilinmeyen hata'
+      if (axios.isAxiosError(e)) {
+        if (e.response) {
+          detail = `Sunucu ${e.response.status}: ${JSON.stringify(e.response.data)}`
+        } else if (e.request) {
+          detail = `Backend'e ulaşılamadı (${API}). Uyanmasını bekle ya da VITE_API_URL'i kontrol et.`
+        } else {
+          detail = e.message
+        }
+      } else if (e instanceof Error) {
+        detail = e.message
+      }
+      alert(`Bir şeyler ters gitti!\n\n${detail}`)
     }
     setLoading(false)
   }
