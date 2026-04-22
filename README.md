@@ -141,6 +141,23 @@ VITE_API_URL=http://localhost:8000
 3. Participants fill in their preferences
 4. The organizer views the responses and the AI recommendation on `/dashboard/{trip_id}`
 
+## App screenshots
+
+### 1) Home page
+![Home page](frontend/src/assets/screen-1.png)
+
+### 2) Create trip + share link
+![Create trip and share link](frontend/src/assets/screen-2.png)
+
+### 3) Survey form
+![Survey form](frontend/src/assets/screen-3.png)
+
+### 4) Response saved + dashboard
+![Response saved and dashboard](frontend/src/assets/screen-4.png)
+
+### 5) AI recommendation result
+![AI recommendation result](frontend/src/assets/screen-5.png)
+
 ## Copyright
 
 This project and all code within it belong to **Buse Dikici**. It was built for personal / educational purposes; commercial use without permission is not allowed.
