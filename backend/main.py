@@ -9,17 +9,21 @@ load_dotenv()
 app = FastAPI(title="GroupGo API")
 
 _raw_origins = os.getenv("ALLOWED_ORIGINS", "*").strip()
+_origin_regex = os.getenv("ALLOWED_ORIGIN_REGEX", "").strip()
 if _raw_origins in ("", "*"):
     allowed_origins = ["*"]
 else:
     allowed_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+cors_options = {
+    "allow_origins": allowed_origins,
+    "allow_methods": ["*"],
+    "allow_headers": ["*"],
+}
+if _origin_regex:
+    cors_options["allow_origin_regex"] = _origin_regex
+
+app.add_middleware(CORSMiddleware, **cors_options)
 
 app.include_router(trips.router, prefix="/trips", tags=["trips"])
 app.include_router(responses.router, prefix="/responses", tags=["responses"])
