@@ -83,7 +83,20 @@ export default function Survey() {
       })
       setSubmitted(true)
     } catch (e) {
-      alert('Bir şeyler ters gitti!')
+      console.error('Survey submit error:', e)
+      let detail = 'Bilinmeyen hata'
+      if (axios.isAxiosError(e)) {
+        if (e.response) {
+          detail = `Sunucu ${e.response.status}: ${JSON.stringify(e.response.data)}`
+        } else if (e.request) {
+          detail = `Backend'e ulaşılamadı (${API}).`
+        } else {
+          detail = e.message
+        }
+      } else if (e instanceof Error) {
+        detail = e.message
+      }
+      alert(`Bir şeyler ters gitti!\n\n${detail}`)
     }
     setLoading(false)
   }
